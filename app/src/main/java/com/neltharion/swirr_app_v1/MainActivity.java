@@ -14,6 +14,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.webkit.GeolocationPermissions;
 import android.webkit.PermissionRequest;
 import android.webkit.WebChromeClient;
 import android.webkit.WebResourceRequest;
@@ -30,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     public void handleWebViewSettings(WebSettings webSettings){
         webSettings.setJavaScriptEnabled(true);
         webSettings.setMediaPlaybackRequiresUserGesture(false);
+        webSettings.setGeolocationEnabled(true);
     }
 
     public void handleWebViewClient(WebView webView){
@@ -65,7 +67,14 @@ public class MainActivity extends AppCompatActivity {
                 });
             }
 
+            @Override
+            public void onGeolocationPermissionsShowPrompt(String origin, GeolocationPermissions.Callback callback) {
+//                super.onGeolocationPermissionsShowPrompt(origin, callback);
+                callback.invoke(origin, true, false);
+            }
+
         });
+
     }
 
     public void startWebViewApp(){
@@ -89,6 +98,12 @@ public class MainActivity extends AppCompatActivity {
             if (checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
                 requestPermissions(new String[]{Manifest.permission.CAMERA}, 111);
             }
+            else if(checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED){
+                requestPermissions(new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, 112);
+            }
+            else if(checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED){
+                requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 113);
+            }
             else{
                 startWebViewApp();
             }
@@ -103,7 +118,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if(requestCode == 111){
+        if(requestCode == 111 || requestCode == 112 || requestCode == 113){
 
            if(grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                startWebViewApp();

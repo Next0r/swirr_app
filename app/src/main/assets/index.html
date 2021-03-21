@@ -1,58 +1,23 @@
 <html>
   <head>
-    <script src="./lib/aframe-master.min.js"></script>
+    <script src="./lib/aframe.min.js"></script>
+    <!-- <script src="./lib/aframe-look-at-component.min.js"></script> -->
     <script src="./lib/aframe-ar-nft.js"></script>
-<!--    <script src="./src/index.js"></script>-->
 
-    <style>
-      .arjs-loader {
-        height: 100%;
-        width: 100%;
-        position: absolute;
-        top: 0;
-        left: 0;
-        background-color: rgba(0, 0, 0, 0.8);
-        z-index: 9999;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
-
-      .arjs-loader div {
-        text-align: center;
-        font-size: 1.25em;
-        color: white;
-      }
-    </style>
+    <script src="./src/index.js"></script>
   </head>
 
   <body style="margin: 0px; overflow: hidden">
-<!--  <img src="./res/image.png">-->
-
-    <!-- minimal loader shown until image descriptors are loaded -->
-    <div class="arjs-loader">
-      <div>Loading, please wait...</div>
-    </div>
-
     <a-scene
+      id="scene"
+      controller
       vr-mode-ui="enabled: false;"
       renderer="logarithmicDepthBuffer: true;"
       embedded
       arjs="trackingMethod: best; sourceType: webcam;debugUIEnabled: false;"
-      controller
     >
-      <!-- we use cors proxy to avoid cross-origin problems -->
-<!--       <a-nft-->
-<!--        type="nft"-->
-<!--        url="https://arjs-cors-proxy.herokuapp.com/https://raw.githack.com/AR-js-org/AR.js/master/aframe/examples/image-tracking/nft/trex/trex-image/trex"-->
-<!--        smooth="true"-->
-<!--        smoothCount="10"-->
-<!--        smoothTolerance=".01"-->
-<!--        smoothThreshold="5"-->
-<!--      >-->
-
       <a-nft
-        id="nft_element"
+        id="nft-element"
         type="nft"
         url="https://appassets.androidplatform.net/assets/res/image"
         smooth="true"
@@ -60,18 +25,14 @@
         smoothTolerance=".01"
         smoothThreshold="5"
       >
-
         <a-entity
           gltf-model="https://appassets.androidplatform.net/assets/res/palace.gltf"
-          scale="220 220 220"
-          position="-200 0 0"
-          rotation="-100 0 0"
+          scale="85 85 85"
+          position="-85 -25 -25"
+          rotation="-90 0 0"
         >
         </a-entity>
-
       </a-nft>
-      <a-entity id="camera" camera
-      ></a-entity>
     </a-scene>
   </body>
 </html>

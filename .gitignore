@@ -1,3 +1,6 @@
+# VS Code editor
+app/src/main/assets/.vscode
+
 # Built application files
 *.apk
 *.aar
