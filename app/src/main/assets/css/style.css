@@ -24,3 +24,31 @@ body {
   background-color: rgb(255, 255, 255);
   z-index: 10;
 }
+
+#interface-container {
+  position: fixed;
+  display: flex;
+  width: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 2000;
+  justify-content: space-between;
+}
+
+#gps-info-box{
+    padding: 0.5vw;
+}
+
+#nft-info-box{
+    padding: 0.5vw;
+}
+
+#gps-icon{
+    height: 8vh;
+}
+
+#nft-icon{
+    height: 8vh;
+}

@@ -41,8 +41,8 @@ const createNFTCamera = () => {
   return createElement(
     "a-entity",
     "nft-camera",
-    ["camera", "position", "look-controls"],
-    ["fov:50", "0 1.6 0", ""]
+    ["camera"],
+    ["fov:50;"]
   );
 };
 
@@ -50,11 +50,11 @@ const createNFTEntity = () => {
   const modelEntity = createElement(
     "a-entity",
     "nft-model",
-    ["gltf-model", "scale", "position", "rotation"],
+    ["gltf-model","scale", "position", "rotation"],
     [
       "https://appassets.androidplatform.net/assets/res/palace.gltf",
-      "85 85 85",
-      "-85 -25 -15",
+      "200 200 200",
+      "-200 -75 0",
       "-90 0 0",
     ]
   );
