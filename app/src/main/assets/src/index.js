@@ -5,9 +5,15 @@ const {
   createNFTEntity,
   createScene,
 } = require("./ar-element-generator");
+const { SplashScreen } = require("./splash-screen");
 
 window.onload = function () {
-  document.body.appendChild(createScene());
+  SplashScreen.add();
+  SplashScreen.setStartButtonListener(() => {
+    SplashScreen.remove(() => {
+      document.body.appendChild(createScene());
+    });
+  });
 };
 
 AFRAME.registerComponent("controller", {
@@ -19,7 +25,9 @@ AFRAME.registerComponent("controller", {
     scene.appendChild(createGPSEntity());
 
     // insert nft entity
-    scene.appendChild(createNFTEntity());
+    setTimeout(() => {
+      scene.appendChild(createNFTEntity());
+    }, 100);
 
     // handle image marker found
     scene.addEventListener("markerFound", function () {
