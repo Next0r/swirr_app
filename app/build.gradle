@@ -20,12 +20,21 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            aaptOptions {
+                ignoreAssetsPattern "!.vscode:!node_modules:!src:!*.json:!webpack.config.js"
+            }
+        }
+        debug{
+            aaptOptions {
+                ignoreAssetsPattern "!.vscode:!node_modules:!src:!*.json:!webpack.config.js"
+            }
         }
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
 }
 
 dependencies {

@@ -1,6 +1,12 @@
 # VS Code editor
 app/src/main/assets/.vscode
 
+# node
+app/src/main/assets/node_modules
+app/src/main/assets/package-lock.json
+app/src/main/assets/package.json
+app/src/main/assets/webpack.config.js
+
 # Built application files
 *.apk
 *.aar

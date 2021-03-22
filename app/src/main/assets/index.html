@@ -4,35 +4,9 @@
     <!-- <script src="./lib/aframe-look-at-component.min.js"></script> -->
     <script src="./lib/aframe-ar-nft.js"></script>
 
-    <script src="./src/index.js"></script>
+    <script src="./dist/app.js"></script>
   </head>
 
   <body style="margin: 0px; overflow: hidden">
-    <a-scene
-      id="scene"
-      controller
-      vr-mode-ui="enabled: false;"
-      renderer="logarithmicDepthBuffer: true;"
-      embedded
-      arjs="trackingMethod: best; sourceType: webcam;debugUIEnabled: false;"
-    >
-      <a-nft
-        id="nft-element"
-        type="nft"
-        url="https://appassets.androidplatform.net/assets/res/image"
-        smooth="true"
-        smoothCount="5"
-        smoothTolerance=".01"
-        smoothThreshold="5"
-      >
-        <a-entity
-          gltf-model="https://appassets.androidplatform.net/assets/res/palace.gltf"
-          scale="85 85 85"
-          position="-85 -25 -25"
-          rotation="-90 0 0"
-        >
-        </a-entity>
-      </a-nft>
-    </a-scene>
   </body>
 </html>
