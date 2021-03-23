@@ -9,11 +9,14 @@ import androidx.fragment.app.DialogFragment;
 
 import android.Manifest;
 import android.annotation.TargetApi;
+import android.app.ActionBar;
 import android.content.pm.PackageManager;
+import android.content.res.AssetManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.webkit.GeolocationPermissions;
 import android.webkit.PermissionRequest;
 import android.webkit.WebChromeClient;
@@ -23,6 +26,9 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
         webSettings.setJavaScriptEnabled(true);
         webSettings.setMediaPlaybackRequiresUserGesture(false);
         webSettings.setGeolocationEnabled(true);
+        webSettings.setBlockNetworkLoads(true);
     }
 
     public void handleWebViewClient(WebView webView){
@@ -44,13 +51,14 @@ public class MainActivity extends AppCompatActivity {
             @RequiresApi(21)
             @Override
             public WebResourceResponse shouldInterceptRequest(WebView view, WebResourceRequest request) {
+
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    return assetLoader.shouldInterceptRequest(request.getUrl());
-                }
-                else{
+                    return assetLoader.shouldInterceptRequest( request.getUrl());
+                } else {
                     return assetLoader.shouldInterceptRequest(Uri.parse(request.toString()));
                 }
             }
+
         });
 
         webView.setWebChromeClient(new WebChromeClient() {
@@ -91,6 +99,11 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        View decorView = getWindow().getDecorView();
+        int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN;
+        decorView.setSystemUiVisibility(uiOptions);
+
         setContentView(R.layout.activity_main);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {

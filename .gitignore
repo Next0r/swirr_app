@@ -7,6 +7,11 @@ app/src/main/assets/package-lock.json
 app/src/main/assets/package.json
 app/src/main/assets/webpack.config.js
 
+# zappar
+app/src/main/assets/lib/zappar/*.wasm
+app/src/main/assets/lib/zappar/*.zbin
+app/src/main/assets/lib/zappar/*.md
+
 # Built application files
 *.apk
 *.aar

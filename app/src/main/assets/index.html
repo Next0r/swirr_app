@@ -7,8 +7,121 @@
     <!-- <script src="./lib/aframe-look-at-component.min.js"></script> -->
     <script src="./lib/aframe-ar-nft.js"></script>
 
+    <script src="./lib/zappar/zappar-aframe.js"></script>
+
     <script src="./dist/app.js"></script>
   </head>
 
-  <body style="margin: 0px; overflow: hidden"></body>
+  <!-- <body style="margin: 0px; overflow: hidden">
+  
+    
+  </body> -->
+
+  <body>
+    <!-- <div
+      id="text-box"
+      style="
+        z-index: 100;
+        position: fixed;
+        top: 0;
+        left: 0;
+        background-color: white;
+      "
+    >
+      Test
+    </div> -->
+
+    <!-- <a-scene
+      controller
+      vr-mode-ui="enabled: false;"
+      renderer="logarithmicDepthBuffer: true;"
+      embedded
+      arjs="trackingMethod: best; sourceType: webcam;debugUIEnabled: false;"
+    >
+      <a-entity id="camera" camera zappar-camera></a-entity>
+
+      <a-assets>
+        <a-asset-item
+          id="target-file"
+          src="https://appassets.androidplatform.net/assets/res/image.zpt"
+        />
+      </a-assets>
+
+      <a-entity zappar-image="target: #target-file" id="image-group">
+      </a-entity>
+
+      <a-box id="box" position="0 0 0.5"></a-box>
+    </a-scene> -->
+
+    <!-- <script>
+      const imageGroup = document.querySelector("#image-group");
+
+      imageGroup.addEventListener("zappar-visible", () => {
+        console.log("visible");
+      });
+
+      imageGroup.addEventListener("zappar-notvisible", () => {
+        console.log("not visible");
+      });
+
+      const matQueue = [];
+
+      const maxPosQueueSize = 5;
+      const maxRotQueueSize = 10;
+
+      const box = document.querySelector("#box");
+
+      const textBox = document.querySelector("#text-box");
+
+      const posQueue = [];
+      const rotQueue = [];
+
+      let lastQuat = new THREE.Quaternion();
+
+      const smooth = () => {
+        let pos = new THREE.Vector3();
+        let quat = new THREE.Quaternion();
+        let scale = new THREE.Vector3();
+
+        imageGroup.object3D.matrix.decompose(pos, quat, scale);
+
+        if (posQueue.length >= maxPosQueueSize) {
+          posQueue.shift();
+        }
+        posQueue.push(pos);
+
+        let meanPos = new THREE.Vector3(0, 0, 0);
+        posQueue.forEach((position) => {
+          meanPos.add(position);
+        });
+
+        meanPos.divideScalar(posQueue.length);
+
+        box.setAttribute("position", meanPos);
+
+        box.object3D.setRotationFromQuaternion(quat);
+        let rot = box.getAttribute("rotation");
+
+        if (rotQueue.length >= maxRotQueueSize) {
+          rotQueue.shift();
+        }
+        rotQueue.push(new THREE.Vector3(rot.x, rot.y, rot.z));
+
+        let meanRot = new THREE.Vector3(0, 0, 0);
+        rotQueue.forEach((rotation) => {
+          meanRot.add(rotation);
+        });
+        meanRot.divideScalar(rotQueue.length);
+
+        box.setAttribute("rotation", meanRot);
+      };
+
+      AFRAME.registerComponent("controller", {
+        init: function () {},
+        tick: function () {
+          smooth();
+        },
+      });
+    </script> -->
+  </body>
 </html>

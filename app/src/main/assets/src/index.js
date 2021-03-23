@@ -1,26 +1,28 @@
 const {
   createGPSCamera,
   createGPSEntity,
-  createNFTCamera,
-  createNFTEntity,
   createScene,
+  createZapparAsset,
+  createZapparImageGroup,
+  createZapparCamera,
+  createZapparModelEntity,
 } = require("./ar-element-generator");
 const { Interface } = require("./interface");
 const { SplashScreen } = require("./splash-screen");
+const { ZapparSmooth } = require("./zappar-smooth");
 
-window.onload = function () {
-  // setTimeout(() => {
-  //   Interface.setGPSIconDisabled();
-  //   Interface.setNFTIconReady();
-  // }, 3000);
+window.alert = (text) => {
+  console.log(`ALERT: ${text}`);
+};
 
+window.onload = () => {
   SplashScreen.add();
   SplashScreen.setStartButtonListener(() => {
     SplashScreen.remove(() => {
       document.body.appendChild(createScene());
       Interface.add();
       Interface.animateGPSIcon();
-      Interface.animateNFTIcon();
+      Interface.setNFTIconReady();
     });
   });
 };
@@ -33,33 +35,40 @@ AFRAME.registerComponent("controller", {
     scene.appendChild(createGPSCamera());
     scene.appendChild(createGPSEntity());
 
-    // insert nft entity
-    // setTimeout(() => {
-    scene.appendChild(createNFTEntity());
-    // }, 1000);
+    // prepare image tracking services
+    scene.appendChild(createZapparAsset());
+    scene.appendChild(createZapparCamera());
+    scene.appendChild(createZapparImageGroup());
 
-    window.addEventListener("arjs-nft-loaded", function () {
-      Interface.setNFTIconReady();
-    });
+    const imageGroup = document.querySelector("#image-group");
 
-    // handle image marker found
-    scene.addEventListener("markerFound", function () {
+    imageGroup.addEventListener("zappar-visible", () => {
       scene.removeChild(document.querySelector("#gps-camera"));
       scene.removeChild(document.querySelector("#gps-model"));
-      scene.appendChild(createNFTCamera());
+      scene.appendChild(createZapparModelEntity());
       Interface.setGPSIconDisabled();
       Interface.setNFTIconActive();
     });
 
-    // handle image marker lost
-    scene.addEventListener("markerLost", function () {
-      scene.removeChild(document.querySelector("#nft-camera"));
+    imageGroup.addEventListener("zappar-notvisible", () => {
+      scene.removeChild(document.querySelector("#zappar-camera"));
+      scene.removeChild(document.querySelector("#zappar-model"));
       scene.appendChild(createGPSCamera());
       scene.appendChild(createGPSEntity());
+      scene.appendChild(createZapparCamera());
       Interface.setNFTIconReady();
       Interface.animateGPSIcon();
     });
   },
 
   tick: function () {},
+});
+
+AFRAME.registerComponent("zappar-smooth", {
+  init: function () {
+    ZapparSmooth.init();
+  },
+  tick: function () {
+    ZapparSmooth.smooth();
+  },
 });

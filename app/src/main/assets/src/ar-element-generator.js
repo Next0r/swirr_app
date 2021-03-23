@@ -28,67 +28,68 @@ const createGPSEntity = () => {
   return createElement(
     "a-entity",
     "gps-model",
-    ["gltf-model", "gps-entity-place", "scale"],
+    ["gltf-model", "gps-entity-place", "scale", "rotation"],
     [
       "https://appassets.androidplatform.net/assets/res/palace.gltf",
       "latitude: 50.13149691189219; longitude: 18.701269794815275;",
       "4 4 4",
+      "0 180 0",
     ]
   );
 };
 
-const createNFTCamera = () => {
+const createZapparCamera = () => {
   return createElement(
     "a-entity",
-    "nft-camera",
-    ["camera"],
-    ["fov:50;"]
+    "zappar-camera",
+    ["camera", "zappar-camera"],
+    ["fov:50", ""]
   );
 };
 
-const createNFTEntity = () => {
-  const modelEntity = createElement(
+const createZapparAsset = () => {
+  const assets = createElement("a-assets", "assets");
+  const assetItem = createElement(
+    "a-asset-item",
+    "target-file",
+    ["src"],
+    ["https://appassets.androidplatform.net/assets/res/image.zpt"]
+  );
+
+  assets.appendChild(assetItem);
+  return assets;
+};
+
+const createZapparImageGroup = () => {
+  return createElement(
     "a-entity",
-    "nft-model",
-    ["gltf-model","scale", "position", "rotation"],
+    "image-group",
+    ["zappar-image"],
+    ["target: #target-file"]
+  );
+};
+
+const createZapparModelEntity = () => {
+  return createElement(
+    "a-entity",
+    "zappar-model",
+    ["gltf-model", "scale", "position", "rotation", "zappar-smooth"],
     [
       "https://appassets.androidplatform.net/assets/res/palace.gltf",
-      "200 200 200",
-      "-200 -75 0",
-      "-90 0 0",
+      "1 1 1",
+      "0 0 0",
+      "0 0 0.5",
+      "",
     ]
   );
-
-  const nftEntity = createElement(
-    "a-nft",
-    "nft-entity",
-    [
-      "type",
-      "url",
-      "smooth",
-      "smoothCount",
-      "smoothTolerance",
-      "smoothThreshold",
-    ],
-    [
-      "nft",
-      "https://appassets.androidplatform.net/assets/res/image",
-      "true",
-      "5",
-      "0.01",
-      "5",
-    ]
-  );
-
-  nftEntity.appendChild(modelEntity);
-
-  return nftEntity;
 };
 
 module.exports = {
   createScene: createScene,
   createGPSCamera: createGPSCamera,
   createGPSEntity: createGPSEntity,
-  createNFTCamera: createNFTCamera,
-  createNFTEntity: createNFTEntity,
+  createZapparCamera: createZapparCamera,
+  createZapparAsset: createZapparAsset,
+  createZapparImageGroup: createZapparImageGroup,
+  createZapparModelEntity: createZapparModelEntity,
 };
