@@ -1,21 +1,11 @@
 package com.neltharion.swirr_app_v1;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.webkit.WebViewAssetLoader;
-import androidx.fragment.app.DialogFragment;
-
 import android.Manifest;
 import android.annotation.TargetApi;
-import android.app.ActionBar;
 import android.content.pm.PackageManager;
-import android.content.res.AssetManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.webkit.GeolocationPermissions;
 import android.webkit.PermissionRequest;
@@ -26,11 +16,11 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.List;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.webkit.WebViewAssetLoader;
 
 public class MainActivity extends AppCompatActivity {
 

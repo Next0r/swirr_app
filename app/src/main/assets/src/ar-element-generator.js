@@ -31,9 +31,9 @@ const createGPSEntity = () => {
     ["gltf-model", "gps-entity-place", "scale", "rotation"],
     [
       "https://appassets.androidplatform.net/assets/res/palace.gltf",
-      "latitude: 50.13149691189219; longitude: 18.701269794815275;",
-      "4 4 4",
-      "0 180 0",
+      "latitude: 50.13184874227085; longitude: 18.701184365104936;",
+      "3.5 3.5 3.5",
+      "0 150 0",
     ]
   );
 };
@@ -78,7 +78,7 @@ const createZapparModelEntity = () => {
       "https://appassets.androidplatform.net/assets/res/palace.gltf",
       "1 1 1",
       "0 0 0",
-      "0 0 0.5",
+      "0 0 0",
       "",
     ]
   );
