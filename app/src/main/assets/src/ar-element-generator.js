@@ -32,7 +32,7 @@ const createGPSEntity = () => {
     [
       "https://appassets.androidplatform.net/assets/res/palace.gltf",
       "latitude: 50.13184874227085; longitude: 18.701184365104936;",
-      "3.5 3.5 3.5",
+      "3 3 3",
       "0 150 0",
     ]
   );
