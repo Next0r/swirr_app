@@ -24,13 +24,6 @@ import androidx.webkit.WebViewAssetLoader;
 
 public class MainActivity extends AppCompatActivity {
 
-    public void handleWebViewSettings(WebSettings webSettings){
-        webSettings.setJavaScriptEnabled(true);
-        webSettings.setMediaPlaybackRequiresUserGesture(false);
-        webSettings.setGeolocationEnabled(true);
-        webSettings.setBlockNetworkLoads(true);
-    }
-
     public void handleWebViewClient(WebView webView){
         final WebViewAssetLoader assetLoader = new WebViewAssetLoader.Builder()
                 .addPathHandler("/assets/", new WebViewAssetLoader.AssetsPathHandler(this))
@@ -51,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
 
         });
 
+        //Set webview client
         webView.setWebChromeClient(new WebChromeClient() {
             // Grant permissions for cam
             @TargetApi(Build.VERSION_CODES.LOLLIPOP)
@@ -74,7 +68,8 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
-
+     
+    //Starst web view app
     public void startWebViewApp(){
 
         WebView webView = (WebView) findViewById(R.id.webview);
@@ -85,6 +80,14 @@ public class MainActivity extends AppCompatActivity {
 
         webView.loadUrl("https://appassets.androidplatform.net/assets/index.html");
     }
+  
+    public void handleWebViewSettings(WebSettings webSettings){
+        webSettings.setJavaScriptEnabled(true);
+        webSettings.setMediaPlaybackRequiresUserGesture(false);
+        webSettings.setGeolocationEnabled(true);
+        webSettings.setBlockNetworkLoads(true);
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -118,6 +121,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
